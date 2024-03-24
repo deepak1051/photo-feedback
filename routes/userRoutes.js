@@ -15,14 +15,14 @@ router.get(
     const path_name =
       process.env.NODE_ENV === 'development'
         ? 'http://localhost:5173/notes'
-        : '/notes';
+        : '/feedbacks';
 
     console.log(path_name);
 
     res.redirect(
       process.env.NODE_ENV === 'development'
         ? 'http://localhost:5173/notes'
-        : '/notes'
+        : '/feedbacks'
     );
   }
 );
