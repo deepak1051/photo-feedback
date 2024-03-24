@@ -8,6 +8,7 @@ import passport from 'passport';
 import userRoutes from './routes/userRoutes.js';
 import noteRoutes from './routes/noteRoutes.js';
 import feedbackRoute from './routes/feedbackRoutes.js';
+import commentRoutes from './routes/commentRoutes.js';
 
 import './services/passport.js';
 
@@ -31,6 +32,7 @@ app.use(passport.session());
 app.use('/', userRoutes);
 app.use('/api/notes', noteRoutes);
 app.use('/api/feedbacks', feedbackRoute);
+app.use('/api/comments', commentRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   const __dirname = path.resolve();

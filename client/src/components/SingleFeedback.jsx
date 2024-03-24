@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { useContext } from 'react';
 import { authContext } from '../context/authContext';
+import Comments from './Comments';
 
 export default function SingleFeedback() {
   const { user } = useContext(authContext);
@@ -18,8 +19,7 @@ export default function SingleFeedback() {
 
   const voteMutation1 = useMutation({
     mutationFn: (data) => axios.post(`/api/feedbacks/${feedbackId}/vote`, data),
-    onSuccess: (data) => {
-      console.log(data);
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['feedback', feedbackId] });
     },
     onError: (error) => {
@@ -29,8 +29,7 @@ export default function SingleFeedback() {
 
   const voteMutation2 = useMutation({
     mutationFn: (data) => axios.post(`/api/feedbacks/${feedbackId}/vote`, data),
-    onSuccess: (data) => {
-      console.log(data);
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['feedback', feedbackId] });
     },
     onError: (error) => {
@@ -111,6 +110,9 @@ export default function SingleFeedback() {
           </div>
         </div>
       </div>
+
+      <hr />
+      <Comments feedbackId={data._id} />
     </div>
   );
 }
