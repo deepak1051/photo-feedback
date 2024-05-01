@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
-import { authContext } from '../context/authContext';
+import { authContext } from '../../context/authContext';
 import axios from 'axios';
 import CommentReply from './CommentReply';
 import { toast } from 'react-toastify';
 
 export default function CommentReplyContainer({ comment, feedbackId }) {
   const { user } = useContext(authContext);
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const queryClient = useQueryClient();
 
   const deleteMutation = useMutation({

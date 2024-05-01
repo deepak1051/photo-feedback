@@ -1,15 +1,19 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { authContext } from '../context/authContext';
-import Comments from './Comments';
+import Comments from '../components/comments/Comments';
 
 export default function SingleFeedback() {
   const { user } = useContext(authContext);
   const { feedbackId } = useParams();
   const queryClient = useQueryClient();
+
+  const [searchText, setSearchText] = useState('');
+
+  const navigate = useNavigate();
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['feedback', feedbackId],
@@ -54,11 +58,13 @@ export default function SingleFeedback() {
       </h1>
       <div className="flex flex-col md:flex-row gap-20 md:gap-2 items-center justify-between">
         <div className="flex flex-col gap-2 md:flex-1 md:h-80 w-full h-60  object-cover rounded cursor-pointer">
-          <img
-            className="h-full w-full  object-cover rounded cursor-pointer"
-            src={data.image1}
-            alt="image1"
-          />
+          <div className="bg-indigo-50 w-full">
+            <img
+              className="md:flex-1 md:h-80 w-full h-60 object-contain rounded cursor-pointer"
+              src={data.image1}
+              alt="image1"
+            />
+          </div>
           <div className="flex items-center gap-2">
             <button
               disabled={voteMutation1.isPending}
@@ -82,11 +88,13 @@ export default function SingleFeedback() {
           </div>
         </div>
         <div className="flex flex-col  md:flex-1 gap-4 md:h-80 w-full h-60 object-cover rounded cursor-pointer">
-          <img
-            className="md:flex-1 md:h-80 w-full h-60 object-cover rounded cursor-pointer"
-            src={data.image2}
-            alt="image2"
-          />
+          <div className="bg-indigo-50 w-full">
+            <img
+              className="md:flex-1 md:h-80 w-full h-60 object-contain rounded cursor-pointer"
+              src={data.image2}
+              alt="image2"
+            />
+          </div>
           <div className="flex items-center gap-2">
             <button
               disabled={voteMutation2.isPending}
@@ -110,6 +118,33 @@ export default function SingleFeedback() {
           </div>
         </div>
       </div>
+
+      <hr />
+      {/* <div className="mt-24">
+        <h3>Search Something On Youtube</h3>
+        <div className="py-4">
+          <form
+            className="flex gap-2"
+            onSubmit={(e) => {
+              e.preventDefault();
+              navigate(`/search?q=${searchText}`);
+            }}
+          >
+            <input
+              className="p-2 border border-black w-full"
+              type="text"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+            <button
+              className="p-2 bg-teal-500 text-white text-xl"
+              type="submit"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div> */}
 
       <hr />
       <Comments feedbackId={data._id} />

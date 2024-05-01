@@ -118,11 +118,6 @@ export default function CreateFeedback() {
       return;
     }
 
-    // if (!user.user_id) {
-    //   toast.error('user_id is not defined');
-    //   return;
-    // }
-
     try {
       await axios.post(`/api/feedbacks`, {
         image1,
@@ -268,6 +263,12 @@ export default function CreateFeedback() {
                   </div>
                 </div>
               </div>
+
+              {/* {mutation.isError ? (
+                <div className="p-2 rounded border border-red-400 bg-red-200">
+                  {mutation.error.response.data.msg || mutation.error.message}
+                </div>
+              ) : null} */}
 
               <button
                 disabled={image1Loading || image2Loading}

@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useContext, useState } from 'react';
 import { toast } from 'react-toastify';
-import { authContext } from '../context/authContext';
+import { authContext } from '../../context/authContext';
 import axios from 'axios';
 import { formatDistance } from 'date-fns';
 
@@ -44,6 +44,8 @@ export default function CommentReply({ comment, onCancel }) {
     });
   };
 
+  console.log(commentReplyQuery.data);
+
   return (
     <div className="ps-10 mt-2 ">
       <form onSubmit={handleSubmitComment} className="flex">
@@ -77,7 +79,7 @@ export default function CommentReply({ comment, onCancel }) {
         >
           <div className="flex gap-3 ">
             <img
-              src="https://c4.wallpaperflare.com/wallpaper/350/552/37/anime-anime-boys-monkey-d-luffy-one-piece-red-hd-wallpaper-preview.jpg"
+              src={item?.user?.avatar}
               className="object-cover w-5 h-5 rounded-full 
                     border-2 border-emerald-400  shadow-emerald-400
                     "
