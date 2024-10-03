@@ -1,6 +1,9 @@
 import {Link} from 'react-router-dom'
+import { authContext } from '../context/authContext';
+
 
 export default function Homepage() {
+  const { user } = useContext(authContext);
   return (
     <>
       <section className="px-3 py-5 bg-neutral-100 lg:py-10">
@@ -11,7 +14,7 @@ export default function Homepage() {
             </p>
             <p className="text-4xl font-bold md:text-7xl">FEEDBACK APP</p>
             <p className="mt-2 text-sm md:text-lg">For limited time only!</p>
-            <Link to="/feedbacks" className="text-lg md:text-2xl bg-black text-white py-2 px-5 mt-10 hover:bg-zinc-800">
+            <Link to={user ? '/feedbacks' : '/'} className="text-lg md:text-2xl bg-black text-white py-2 px-5 mt-10 hover:bg-zinc-800">
               Click Now
             </Link>
           </div>
