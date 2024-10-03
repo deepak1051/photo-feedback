@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
 import { authContext } from '../context/authContext';
-
+import {useContext} from 'react'
 
 export default function Homepage() {
   const { user } = useContext(authContext);
