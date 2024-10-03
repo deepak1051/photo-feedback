@@ -1,3 +1,5 @@
+import Link from 'react-router-dom
+
 export default function Homepage() {
   return (
     <>
@@ -9,9 +11,9 @@ export default function Homepage() {
             </p>
             <p className="text-4xl font-bold md:text-7xl">FEEDBACK APP</p>
             <p className="mt-2 text-sm md:text-lg">For limited time only!</p>
-            <button className="text-lg md:text-2xl bg-black text-white py-2 px-5 mt-10 hover:bg-zinc-800">
+            <Link to="/feedbacks" className="text-lg md:text-2xl bg-black text-white py-2 px-5 mt-10 hover:bg-zinc-800">
               Click Now
-            </button>
+            </Link>
           </div>
           <div className="order-1 lg:order-2">
             <img
